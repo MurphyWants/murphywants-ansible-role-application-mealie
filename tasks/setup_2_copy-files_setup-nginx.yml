@@ -1,0 +1,31 @@
+---
+  - name: Create folders
+    ansible.builtin.file:
+      path: "{{ item }}"
+      state: directory
+    loop:
+      - "{{ MEALIE_PATH }}"
+      - "{{ MEALIE_PATH }}/volumes"
+      - "{{ MEALIE_PATH }}/volumes/mealie-app-data"
+      - "{{ MEALIE_PATH }}/backups"
+      - "{{ MEALIE_PATH }}/backups/database"
+      - "{{ MEALIE_PATH }}/backups/tarballs"
+      - "{{ MEALIE_PATH }}/backups/logs"
+      - "{{ MEALIE_PATH }}/scripts"
+      - "{{ MEALIE_PATH }}/docs"
+
+
+  - name: Copy docker compose file
+    ansible.builtin.template:
+      src: "{{ role_path }}/templates/MEALIE_docker-compose.yml.j2"
+      dest: "{{ MEALIE_PATH }}/docs/docker-compose.yml"
+
+  - name: Install nginx
+    ansible.builtin.package:
+      name: nginx
+      state: 'latest'
+
+  - name: Install sqlite3
+    ansible.builtin.package:
+      name: sqlite3
+  

@@ -1,0 +1,6 @@
+---
+  - name: Start mealie
+    community.docker.docker_compose:
+      project_src: "{{ MEALIE_PATH }}/docs"
+      files: "docker-compose.yml"
+      pull: true

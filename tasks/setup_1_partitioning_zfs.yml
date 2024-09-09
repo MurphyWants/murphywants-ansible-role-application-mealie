@@ -1,0 +1,7 @@
+---
+  - name: Create mealie ZFS volume
+    community.general.zfs:
+      name: "{{ MEALIE_STORAGE_ZFS_POOL }}/{{ MEALIE_STORAGE_ZFS_FS }}"
+      state: present
+      extra_zfs_properties:
+        mountpoint: "{{ MEALIE_PATH }}"

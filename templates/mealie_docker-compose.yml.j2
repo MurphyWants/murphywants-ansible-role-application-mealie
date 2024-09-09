@@ -1,0 +1,17 @@
+version: "3.3"
+services:
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie
+    container_name: mealie
+    ports:
+      - "127.0.0.1:{{ MEALIE_HTTP_PORT }}:9000"
+    volumes:
+      - {{ MEALIE_PATH }}/volumes/mealie-app-data:/app/data/
+    environment:
+      - PUID:{{ MEALIE_PUID }}
+      - PGID:{{ MEALIE_PGID }}
+      - TZ:{{ MEALIE_TIMEZONE }}
+      - MAX_WORKERS:1
+      - WEB_CONCURRENCY:1
+      - BASE_URL:{{ MEALIE_FQDN }}
+    restart: always
