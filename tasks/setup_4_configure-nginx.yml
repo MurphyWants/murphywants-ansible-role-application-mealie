@@ -23,7 +23,7 @@
   
   - name: Copy nginx config
     ansible.builtin.template:
-      src: "{{ role_path }}/templates/MEALIE_nginx.conf.j2"
+      src: "{{ role_path }}/templates/mealie_nginx.conf.j2"
       dest: /etc/nginx/conf.d/MEALIE_nginx.conf
 
   - name: Restart nginx
